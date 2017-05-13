@@ -103,7 +103,9 @@ http://ldsc.broadinstitute.org/static/media/LD-Hub_genetic_correlation_196x196.x
 ```
 After download the file, the phenotypic correlation is in sheet **rP**  
 
-We also provide an example of the phenotypic correlation matrix of 221 traits in the PhenoSpD package (**LD-Hub_phenotypic_correlation_221x221.txt**)
+We also provide an example of the phenotypic correlation matrix of 221 traits in the PhenoSpD package: 
+
+**LD-Hub_phenotypic_correlation_221x221.txt**
 
 
 ## Step 3. multiple testing correction (Spectral Decomposition, SpD)
