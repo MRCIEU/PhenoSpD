@@ -34,6 +34,11 @@ Fast-forward
 ```
 
 Then, you will need to download and install R version 3.3.0 or above (https://cran.r-project.org/). 
+And please install the necessary R package **optparse**
+```
+install.packages("optparse")
+library(optparse)
+```
 
 ## Step 2. Phenotypic correlation estimation
 ### Option 1: metaCCA
