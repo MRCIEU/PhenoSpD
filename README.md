@@ -1,6 +1,6 @@
 # ***PhenoSpD v1.0.0***
 
-PhenoSpD is a tool for phenotypic correlation estimation and multiple testing correction (Spectral Decomposition, SpD) for human phenome using GWAS summary statistics. 
+PhenoSpD is a command line R based tool for phenotypic correlation estimation and multiple testing correction (Spectral Decomposition, SpD) for human phenome using GWAS summary statistics. 
 
 ## Step 1. Get started
 ### Install PhenoSpD
@@ -52,7 +52,7 @@ biocLite("metaCCA")
 browseVignettes("metaCCA")
 ```
 
-We provided an example of the metaCCA input file, **PhenoSpD_input_example.txt**, in the PhenoSpD package.
+We provided an example of the metaCCA input file, `data/PhenoSpD_input_example.txt`, in the PhenoSpD package.
 
 To check the input format, please run:
 ```
@@ -84,14 +84,14 @@ In the above example, each row corresponding to a SNP (row name is the rsID). An
 
 2) please only use xxx_b and xxx_se as the columns names for a specific trait, otherwise error message will appear
 
-To estimate phenotypic correlation matrix of the above example input using metaCCA, please run 
+To estimate phenotypic correlation matrix of the above example input using PhenoSpD, please run 
 ```
-#eatimate 10 x 10 correlation matrix
-S_YY_study1 = estimateSyy( S_XY = S_XY_study1 )
+cd PhenoSpD
+Rscript ./script/PhenoCorr.r --input ./data/PhenoSpD_input_example.txt --out example.pheno.corr.txt
 ```
 
 
-### Option 2: LD score regression
+### Option 2: LD score regression (LD Hub)
 If you are using ***LD score regression*** to estimate phenotypic correlation, you can install LD score regression from here https://github.com/bulik/ldsc. 
 
 Or you can lookup existing pair-wise phenotypic correlation from ***LD Hub*** (ldsc.broadinstitute.org)
@@ -103,12 +103,24 @@ http://ldsc.broadinstitute.org/static/media/LD-Hub_genetic_correlation_196x196.x
 ```
 After download the file, the phenotypic correlation is in sheet **rP**  
 
-We also provide an example of the phenotypic correlation matrix of 221 traits in the PhenoSpD package: 
-
-**LD-Hub_phenotypic_correlation_221x221.txt**
-
+We also provide an example of the LD Hub phenotypic correlation matrix in the PhenoSpD package. 
+```
+data/LD-Hub_phenotypic_correlation_221x221.txt
+```
 
 ## Step 3. multiple testing correction (Spectral Decomposition, SpD)
+
+To estimate number of independent traits, please run
+```
+##using the 10 x 10 phenotypic correlation estimated by metaCCA
+cd PhenoSpD
+Rscript ./script/PhenoCorr.r --input ./data/PhenoSpD_input_example.txt --out example.pheno.corr.txt
+Rscript ./script/SpD.r --input example.pheno.corr.txt --out example.phenospd.out
+
+##using the LD Hub phenotypic correlation
+cd PhenoSpD
+Rscript ./script/SpD.r --input data/LD-Hub_phenotypic_correlation_221x221.txt --out ldhub.phenospd.out
+```
 
 
 ## Citation
