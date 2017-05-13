@@ -2,7 +2,7 @@
 
 PhenoSpD is a command line R based tool for phenotypic correlation estimation and multiple testing correction (Spectral Decomposition, SpD) for human phenome using GWAS summary statistics. 
 
-## Step 1. Get started
+## Step 1. Get started (one off)
 ### Install PhenoSpD
 In order to download PhenoSpD, you should clone this repository via the command
 ```
@@ -35,15 +35,12 @@ Fast-forward
 
 Then, you will need to download and install R version 3.3.0 or above (https://cran.r-project.org/). 
 
-And please install the necessary R package **optparse** in R
+Also, please install the necessary R package **optparse** in R
 ```
 install.packages("optparse")
 library(optparse)
 ```
-
-## Step 2. Phenotypic correlation estimation
-### Option 1: metaCCA
-Please install ***metaCCA*** R package in R
+And please install ***metaCCA*** R package in R
 ```
 ###update your R version if necessary###
 install.packages("installr")
@@ -58,6 +55,9 @@ biocLite("metaCCA")
 browseVignettes("metaCCA")
 ```
 
+
+## Step 2. Phenotypic correlation estimation
+### Option 1: metaCCA
 We provided an example of the metaCCA input file, `data/PhenoSpD_input_example.txt`, in the PhenoSpD package.
 
 To check the input format, please run the following code in R:
