@@ -93,7 +93,7 @@ In the above example, each row corresponding to a SNP (row name is the rsID). An
 To estimate phenotypic correlation matrix of the above example input using PhenoSpD, please run the following code in your PhenoSpD folder
 ```
 cd PhenoSpD
-Rscript ./script/PhenoCorr.r --input ./data/PhenoSpD_input_example.txt --out example.pheno.corr.txt
+Rscript ./script/PhenoCorr.r --sumstats ./data/PhenoSpD_input_example.txt --out example.pheno.corr.txt
 ```
 
 
@@ -120,14 +120,13 @@ To estimate number of independent traits, please run the following code in your 
 ```
 ##using the 10 x 10 phenotypic correlation estimated by metaCCA
 cd PhenoSpD
-Rscript ./script/PhenoCorr.r --input ./data/PhenoSpD_input_example.txt --out example.pheno.corr.txt
-Rscript ./script/SpD.r --input example.pheno.corr.txt --out example.phenospd.out
+Rscript ./script/PhenoCorr.r --sumstats ./data/PhenoSpD_input_example.txt --out example.pheno.corr.txt
+Rscript ./script/SpD.r --phenocorr example.pheno.corr.txt --out example.phenospd.txt
 
 ##using the LD Hub phenotypic correlation
 cd PhenoSpD
-Rscript ./script/SpD.r --input data/LD-Hub_phenotypic_correlation_221x221.txt --out ldhub.phenospd.out
+Rscript ./script/SpD.r --phenocorr data/LD-Hub_phenotypic_correlation_221x221.txt --out ldhub.phenospd.txt
 ```
-
 
 ## Citation
 
