@@ -47,15 +47,49 @@ updateR()
 ###install metaCCA R package###
 source("https://bioconductor.org/biocLite.R")
 biocLite("metaCCA")
+
+###documentations of metaCCA can be found here
+browseVignettes("metaCCA")
 ```
 
 To estimate the pheotypic correlation using metaCCA, please run:
 ```
 library(metaCCA)
+##load example input file
 data( package = 'metaCCA' )
-S_YY_study1 = estimateSyy( S_XY = S_XY_full_study1 )
-View(S_YY_study1)
+
+##S_XY_study1 is an example of the input file, which contains univariate summary statistics of 10 traits across 10 SNPs 
+View(S_XY_study1)
+
+##estimate phenotypeic correlation martrix of 10 traits agains 10 traits
+S_YY_study1 = estimateSyy( S_XY = S_XY_study1 )
+## Part of the S_XY data frame for study 1
+print( head(S_XY_study1[,1:6]), digits = 3 )
+##  allele_0 allele_1 trait1_b trait1_se trait2_b trait2_se
+## rs10 G T -0.0196 0.0448 -0.0256 0.0449
+## rs80 G T 0.0624 0.0607 0.0595 0.0608
+## rs140 A C 0.0239 0.0432 0.0157 0.0433
+## rs170 A T 0.0214 0.0483 0.0136 0.0483
+## rs172 A T 0.0205 0.0481 0.0163 0.0481
+## rs174 T G 0.0187 0.0479 0.0143 0.0480
 ```
+In the above example, each row corresponding to a SNP (row name is the rsID). And the columns are:
+• allele 0 - allele 0 (string composed of ”A”, ”C”, ”G” or ”T”).
+
+• allele 1 - allele 1 (string composed of ”A”, ”C”, ”G” or ”T”).
+
+• Two columns for each trait to be included in the analysis:
+
+– traitID b - univariate regression coefficients (e.g. trait1_b);
+
+– traitID se - corresponding standard errors (e.g. trait1_se);
+
+***Reminder:***
+
+1) Please do not use underscores in ”traitID”; 
+
+2) please only use xxx_b and xxx_se as the columns names for a specific trait, otherwise error message will appear
+
 
 ### Option 2: LD score regression
 If you are using ***LD score regression*** to estimate phenotypic correlation, you can install LD score regression from here https://github.com/bulik/ldsc. 
