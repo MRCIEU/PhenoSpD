@@ -52,7 +52,7 @@ biocLite("metaCCA")
 browseVignettes("metaCCA")
 ```
 
-We provided an example of the metaCCA input file, PhenoSpD_input_example.txt, in the PhenoSpD package.
+We provided an example of the metaCCA input file, **PhenoSpD_input_example.txt**, in the PhenoSpD package.
 
 To check the input format, please run:
 ```
@@ -95,11 +95,16 @@ S_YY_study1 = estimateSyy( S_XY = S_XY_study1 )
 If you are using ***LD score regression*** to estimate phenotypic correlation, you can install LD score regression from here https://github.com/bulik/ldsc. 
 
 Or you can lookup existing pair-wise phenotypic correlation from ***LD Hub*** (ldsc.broadinstitute.org)
+
 The download link for the current phenotypic correlation matrix is:
+
 ```
 http://ldsc.broadinstitute.org/static/media/LD-Hub_genetic_correlation_196x196.xlsx
 ```
 After download the file, the phenotypic correlation is in sheet **rP**  
+
+We also provide an example of the phenotypic correlation matrix of 221 traits in the PhenoSpD package (**LD-Hub_phenotypic_correlation_221x221.txt**)
+
 
 ## Step 3. multiple testing correction (Spectral Decomposition, SpD)
 
