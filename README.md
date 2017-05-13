@@ -84,7 +84,7 @@ In the above example, each row corresponding to a SNP (row name is the rsID). An
 
 2) please only use xxx_b and xxx_se as the columns names for a specific trait, otherwise error message will appear
 
-To estimate phenotypic correlation matrix of the above example input using PhenoSpD, please run the following code in your ***PhenoSpD folder***
+To estimate phenotypic correlation matrix of the above example input using PhenoSpD, please run the following code in your **PhenoSpD folder**
 ```
 cd PhenoSpD
 Rscript ./script/PhenoCorr.r --input ./data/PhenoSpD_input_example.txt --out example.pheno.corr.txt
@@ -110,7 +110,7 @@ data/LD-Hub_phenotypic_correlation_221x221.txt
 
 ## Step 3. multiple testing correction (Spectral Decomposition, SpD)
 
-To estimate number of independent traits, please run the following code in your ***PhenoSpD folder***
+To estimate number of independent traits, please run the following code in your **PhenoSpD folder**
 ```
 ##using the 10 x 10 phenotypic correlation estimated by metaCCA
 cd PhenoSpD
