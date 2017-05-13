@@ -52,15 +52,12 @@ biocLite("metaCCA")
 browseVignettes("metaCCA")
 ```
 
-To get an example of the metaCCA input file, please run:
-```
-library(metaCCA)
-##load example input file
-data( package = 'metaCCA' )
+We provided an example of the metaCCA input file, PhenoSpD_input_example.txt, in the PhenoSpD package.
 
-## S_XY_study1 is an example of the input file, 
-## S_XY_study1 contains univariate summary statistics of 10 traits across 10 SNPs 
-## Print part of the S_XY data frame for study 1
+To check the input format, please run:
+```
+dat<-read.table("PhenoSpD_input_example.txt",header=T,row.names = 1)
+## To show part input file
 print( head(S_XY_study1[,1:6]), digits = 3 )
 ##  allele_0 allele_1 trait1_b trait1_se trait2_b trait2_se
 ## rs10 G T -0.0196 0.0448 -0.0256 0.0449
