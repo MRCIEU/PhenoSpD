@@ -34,7 +34,8 @@ Fast-forward
 ```
 
 Then, you will need to download and install R version 3.3.0 or above (https://cran.r-project.org/). 
-And please install the necessary R package **optparse**
+
+And please install the necessary R package **optparse** in R
 ```
 install.packages("optparse")
 library(optparse)
@@ -42,7 +43,7 @@ library(optparse)
 
 ## Step 2. Phenotypic correlation estimation
 ### Option 1: metaCCA
-Within the R environment, please install ***metaCCA*** R package using the following command: 
+Please install ***metaCCA*** R package in R
 ```
 ###update your R version if necessary###
 install.packages("installr")
@@ -59,7 +60,7 @@ browseVignettes("metaCCA")
 
 We provided an example of the metaCCA input file, `data/PhenoSpD_input_example.txt`, in the PhenoSpD package.
 
-To check the input format, please run the following code **in R**:
+To check the input format, please run the following code in R:
 ```
 dat<-read.table("PhenoSpD_input_example.txt",header=T,row.names = 1)
 ## To show part input file
@@ -89,7 +90,7 @@ In the above example, each row corresponding to a SNP (row name is the rsID). An
 
 2) please only use xxx_b and xxx_se as the columns names for a specific trait, otherwise error message will appear
 
-To estimate phenotypic correlation matrix of the above example input using PhenoSpD, please run the following code in your **PhenoSpD folder**
+To estimate phenotypic correlation matrix of the above example input using PhenoSpD, please run the following code in your PhenoSpD folder
 ```
 cd PhenoSpD
 Rscript ./script/PhenoCorr.r --input ./data/PhenoSpD_input_example.txt --out example.pheno.corr.txt
@@ -115,7 +116,7 @@ data/LD-Hub_phenotypic_correlation_221x221.txt
 
 ## Step 3. multiple testing correction (Spectral Decomposition, SpD)
 
-To estimate number of independent traits, please run the following code in your **PhenoSpD folder**
+To estimate number of independent traits, please run the following code in your PhenoSpD folder
 ```
 ##using the 10 x 10 phenotypic correlation estimated by metaCCA
 cd PhenoSpD
