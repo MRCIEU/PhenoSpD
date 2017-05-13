@@ -1,9 +1,29 @@
-##############################SpD.R####################################
-## Results are written to 
-## "PhenoSpD.out"
+library(optparse)
+library(metaCCA)
 
-## Read in correlation matrix:
-corr.matrix<-abs(read.table("/Users//Evelyn//Google Drive//working space//Postdoc_year1_year2//projects/metaCCA/corr.matrix.obs"))      # For multiple test correction the sign of the correlation is irrelevant (i.e., so we're best to input absolute values)
+option_list = list(
+  make_option(c("-s", "--phenocorr"), type="character", default=NULL, 
+              help="file with the phenotypic correlation matrix", metavar="character"),
+
+  make_option(c("-o", "--out"), type="character", default="pheno.corr.txt", 
+              help="output of the multiple testing correction", metavar="character"),
+); 
+
+opt_parser = OptionParser(option_list=option_list);
+opt = parse_args(opt_parser);
+
+if (is.null(opt$phenocorr)){
+  #print_help(opt_parser)
+  stop("Please provide the file name of the phenotypic correlaiton matrix. \n", call.=FALSE)
+}
+
+##example commond line
+#Rscript ./script/SpD.r --phenocorr example.pheno.corr.txt --out example.phenospd.txt
+
+
+## Read in correlation matrix:    
+# For multiple test correction the sign of the correlation is irrelevant (i.e., so we're best to input absolute values)
+corr.matrix<-abs(read.table(opt$phenocorr))  
 
 ## Remove Duplicate Columns:
 corr.matrix.RemoveDupCol <- corr.matrix[!duplicated((corr.matrix))]
@@ -136,7 +156,7 @@ no.dimnames <- function(a) {
   a
 }
 
-sink("/Users/Evelyn/Google Drive/working space/Postdoc_year1_year2//projects//metaCCA/matSpD.out")
+sink("opt$out")
 print(no.dimnames(Original), quote=F)
 print(no.dimnames(OldEigenvalues1), quote=F)
 print(no.dimnames(OldEigenvalues2), quote=F)
@@ -159,7 +179,7 @@ Warningtemp<-c(' ',
 Warning<-matrix(Warningtemp)
 
 if(any(evals < 0)) { 
-  sink("/Users/Evelyn/Google Drive/working space/Postdoc_year1_year2//projects//metaCCA/matSpD.out")
+  sink("opt$out")
   print(no.dimnames(Original), quote=F)
   print(no.dimnames(OldEigenvalues1), quote=F)
   print(no.dimnames(OldEigenvalues2), quote=F)
