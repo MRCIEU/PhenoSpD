@@ -52,18 +52,15 @@ biocLite("metaCCA")
 browseVignettes("metaCCA")
 ```
 
-To estimate the pheotypic correlation using metaCCA, please run:
+To get an example of the metaCCA input file, please run:
 ```
 library(metaCCA)
 ##load example input file
 data( package = 'metaCCA' )
 
-##S_XY_study1 is an example of the input file, which contains univariate summary statistics of 10 traits across 10 SNPs 
-View(S_XY_study1)
-
-##estimate phenotypeic correlation martrix of 10 traits agains 10 traits
-S_YY_study1 = estimateSyy( S_XY = S_XY_study1 )
-## Part of the S_XY data frame for study 1
+## S_XY_study1 is an example of the input file, 
+## S_XY_study1 contains univariate summary statistics of 10 traits across 10 SNPs 
+## Print part of the S_XY data frame for study 1
 print( head(S_XY_study1[,1:6]), digits = 3 )
 ##  allele_0 allele_1 trait1_b trait1_se trait2_b trait2_se
 ## rs10 G T -0.0196 0.0448 -0.0256 0.0449
@@ -89,6 +86,12 @@ In the above example, each row corresponding to a SNP (row name is the rsID). An
 1) Please do not use underscores in ”traitID”; 
 
 2) please only use xxx_b and xxx_se as the columns names for a specific trait, otherwise error message will appear
+
+To estimate phenotypic correlation matrix of the above example input using metaCCA, please run 
+```
+#eatimate 10 x 10 correlation matrix
+S_YY_study1 = estimateSyy( S_XY = S_XY_study1 )
+```
 
 
 ### Option 2: LD score regression
