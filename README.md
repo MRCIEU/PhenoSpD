@@ -2,7 +2,7 @@
 
 PhenoSpD is a command line R based tool for phenotypic correlation estimation and multiple testing correction (Spectral Decomposition, SpD) for human phenome using GWAS summary statistics. 
 
-## Step 1. Get started (one off)
+## Step 1. Get started
 ### Install PhenoSpD
 In order to download PhenoSpD, you should clone this repository via the command
 ```
@@ -25,7 +25,7 @@ remote: Counting objects: 3, done.
 remote: Compressing objects: 100% (3/3), done.
 remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
 Unpacking objects: 100% (3/3), done.
-From https://github.com/bulik/ldsc
+From https://github.com/MRCIEU/PhenoSpD.git
    95f4db3..a6a6b18  master     -> origin/master
 Updating 95f4db3..a6a6b18
 Fast-forward
@@ -35,12 +35,12 @@ Fast-forward
 
 Then, you will need to download and install R version 3.3.0 or above (https://cran.r-project.org/). 
 
-Also, please install the necessary R package **optparse** in R
+The necessary R packages will be installed automatically by PhenoSpD, in case the automatic approach is not working on your computer, please install the R package **optparse** in R
 ```
 install.packages("optparse")
 library(optparse)
 ```
-And please install ***metaCCA*** R package in R
+And you can install ***metaCCA*** R package in R
 ```
 ###update your R version if necessary###
 install.packages("installr")
@@ -127,6 +127,7 @@ Rscript ./script/SpD.r --phenocorr example.pheno.corr.txt --out example.phenospd
 cd PhenoSpD
 Rscript ./script/SpD.r --phenocorr data/LD-Hub_phenotypic_correlation_221x221.txt --out ldhub.phenospd.txt
 ```
+More explanation of the SpD function can be found in Prof Nyholt's homepage: https://neurogenetics.qimrberghofer.edu.au/
 
 ## Citation
 
