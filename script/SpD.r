@@ -1,37 +1,10 @@
 ##THE SPD SECTION OF THE SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
 ##If you are estimating the number of independent traits, please cite: Nyholt DR (2004) A simple correction for multiple testing for SNPs in linkage disequilibrium with each other. Am J Hum Genet 74(4):765-769.
 
-usePackage <- function(p) {
-    if (!is.element(p, installed.packages()[,1]))
-        install.packages(p, dep = TRUE)
-    require(p, character.only = TRUE)
-}
-
-usePackage(optparse)
-
-option_list = list(
-  make_option(c("-s", "--phenocorr"), type="character", default=NULL, 
-              help="file with the phenotypic correlation matrix", metavar="character"),
-
-  make_option(c("-o", "--out"), type="character", default="pheno.corr.txt", 
-              help="output of the multiple testing correction", metavar="character"),
-); 
-
-opt_parser = OptionParser(option_list=option_list);
-opt = parse_args(opt_parser);
-
-if (is.null(opt$phenocorr)){
-  #print_help(opt_parser)
-  stop("Please provide the file name of the phenotypic correlaiton matrix. \n", call.=FALSE)
-}
-
-##example commond line
-#Rscript ./script/SpD.r --phenocorr example.pheno.corr.txt --out example.phenospd.txt
-
-
+SpD<-function(phenocorr,out){
 ## Read in correlation matrix:    
 # For multiple test correction the sign of the correlation is irrelevant (i.e., so we're best to input absolute values)
-corr.matrix<-abs(read.table(opt$phenocorr))  
+corr.matrix<-abs(phenocorr)  
 
 ## Remove Duplicate Columns:
 corr.matrix.RemoveDupCol <- corr.matrix[!duplicated((corr.matrix))]
@@ -164,7 +137,7 @@ no.dimnames <- function(a) {
   a
 }
 
-sink("opt$out")
+sink(out)
 print(no.dimnames(Original), quote=F)
 print(no.dimnames(OldEigenvalues1), quote=F)
 print(no.dimnames(OldEigenvalues2), quote=F)
@@ -187,7 +160,7 @@ Warningtemp<-c(' ',
 Warning<-matrix(Warningtemp)
 
 if(any(evals < 0)) { 
-  sink("opt$out")
+  sink(out)
   print(no.dimnames(Original), quote=F)
   print(no.dimnames(OldEigenvalues1), quote=F)
   print(no.dimnames(OldEigenvalues2), quote=F)
@@ -201,3 +174,8 @@ if(any(evals < 0)) {
   print(no.dimnames(Message), quote=F)
   sink()
 }
+    
+}    
+    
+    
+    
