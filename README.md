@@ -2,7 +2,7 @@
 
 PhenoSpD is a command line R based tool for phenotypic correlation estimation and multiple testing correction (Spectral Decomposition, SpD) for human phenome using GWAS summary statistics. 
 
-## Step 1. Get started
+## Get started
 ### Install PhenoSpD
 In order to download PhenoSpD, you should clone this repository via the command
 ```
@@ -35,12 +35,12 @@ Fast-forward
 
 Then, you will need to download and install R version 3.3.0 or above (https://cran.r-project.org/). 
 
-The necessary R packages will be installed automatically by PhenoSpD, in case the automatic approach is not working on your computer, please install the R package **optparse** in R
+Please install the R package **optparse** in R
 ```
 install.packages("optparse")
 library(optparse)
 ```
-And you can install ***metaCCA*** R package in R
+And please install ***metaCCA*** R package in R
 ```
 ###update your R version if necessary###
 install.packages("installr")
@@ -56,9 +56,29 @@ browseVignettes("metaCCA")
 ```
 
 
-## Step 2. Phenotypic correlation estimation
-### Option 1: metaCCA
-We provided an example of the metaCCA input file, `data/PhenoSpD_input_example.txt`, in the PhenoSpD package.
+## Run the analysis 
+
+We provided two options to deal with different user requests. 
+
+option 1. If you only have the GWAS summary results of multiple traits on hand, we recommand using PhenoSpD option 1 to estimate phenotyic correlation and correct for multiple testing at the same time. 
+```
+cd PhenoSpD
+script ./script/phenospd.r --sumstats ./data/PhenoSpD_input_example.txt --out example
+```
+
+option 2. If you have an exsiting phenotypic correlation matrix, we recommand using PhenoSpD option 2 to only correct for multiple testing.
+
+```
+cd PhenoSpD
+##using the existing LD Hub phenotypic correlation
+Rscript ./script/phenospd.r --phenocorr ./data/LD-Hub_phenotypic_correlation_221x221.txt --out LD-Hub.example
+```
+
+More details of these options are decribed below
+
+### option 1. Phenotypic correlation estimation and multiple testing correlciton using GWAS summary results
+
+We provided an example of the PhenSpD input file, `data/PhenoSpD_input_example.txt`, in the PhenoSpD package.
 
 To check the input format, please run the following code in R:
 ```
@@ -90,17 +110,22 @@ In the above example, each row corresponding to a SNP (row name is the rsID). An
 
 2) please only use xxx_b and xxx_se as the columns names for a specific trait, otherwise error message will appear
 
-To estimate phenotypic correlation matrix of the above example input using PhenoSpD, please run the following code in your PhenoSpD folder
+To estimate phenotypic correlation matrix and correct for multiple testing of the above example input using PhenoSpD, please run the following code in your PhenoSpD folder
 ```
 cd PhenoSpD
-Rscript ./script/PhenoCorr.r --sumstats ./data/PhenoSpD_input_example.txt --out example.pheno.corr.txt
+script ./script/phenospd.r --sumstats ./data/PhenoSpD_input_example.txt --out example
 ```
 
+## option 2. multiple testing correction using exsiting phenotypic correlation matrix
 
-### Option 2: LD score regression (LD Hub)
-If you are using ***LD score regression*** to estimate phenotypic correlation, you can install LD score regression from here https://github.com/bulik/ldsc. 
+To estimate the number of independent traits using an exsiting phenotypic correlation matrix, please run the following code in your PhenoSpD folder
+```
+cd PhenoSpD
+##using the existing LD Hub phenotypic correlation
+Rscript ./script/phenospd.r --phenocorr ./data/LD-Hub_phenotypic_correlation_221x221.txt --out LD-Hub.example
+```
 
-Or you can lookup existing pair-wise phenotypic correlation from ***LD Hub*** (ldsc.broadinstitute.org)
+You can lookup existing pair-wise phenotypic correlation from ***LD Hub*** (http://ldsc.broadinstitute.org/lookup/)
 
 The download link for the current phenotypic correlation matrix is:
 
@@ -114,20 +139,7 @@ We also provide an example of the LD Hub phenotypic correlation matrix in the Ph
 data/LD-Hub_phenotypic_correlation_221x221.txt
 ```
 
-## Step 3. multiple testing correction (Spectral Decomposition, SpD)
-
-To estimate number of independent traits, please run the following code in your PhenoSpD folder
-```
-##using the 10 x 10 phenotypic correlation estimated by metaCCA
-cd PhenoSpD
-Rscript ./script/PhenoCorr.r --sumstats ./data/PhenoSpD_input_example.txt --out example.pheno.corr.txt
-Rscript ./script/SpD.r --phenocorr example.pheno.corr.txt --out example.phenospd.txt
-
-##using the LD Hub phenotypic correlation
-cd PhenoSpD
-Rscript ./script/SpD.r --phenocorr data/LD-Hub_phenotypic_correlation_221x221.txt --out ldhub.phenospd.txt
-```
-More explanation of the SpD function can be found in Prof Nyholt's homepage: https://neurogenetics.qimrberghofer.edu.au/
+If you are planning to using ***LD score regression*** to estimate phenotypic correlation, you can install LD score regression from here https://github.com/bulik/ldsc. 
 
 ## Citation
 
@@ -148,6 +160,8 @@ If you use the Spectral Decomposition approach to estimate number of independent
 Nyholt DR. (2004) A simple correction for multiple testing for SNPs in linkage disequilibrium with each other. Am J Hum Genet 74(4):765-769. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1181954/
 
 Li J, Ji L. (2005) Adjusting multiple testing in multilocus analyses using the eigenvalues of a correlation matrix. Heredity 95:221-227 https://www.ncbi.nlm.nih.gov/pubmed/16077740 
+
+More explanation of the SpD function can be found in Prof Nyholt's homepage: https://neurogenetics.qimrberghofer.edu.au/
 
 ## Authors
 
