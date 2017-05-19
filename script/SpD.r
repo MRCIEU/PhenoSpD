@@ -3,6 +3,9 @@
 
 SpD <- function(phenocorr,out){
 ## Read in correlation matrix:    
+# Set NA value as 0 to run the SpD analysis
+phenocorr[is.na(phenocorr)] <- 0
+
 # For multiple test correction the sign of the correlation is irrelevant (i.e., so we're best to input absolute values)
 corr.matrix<-abs(phenocorr)  
 
@@ -82,7 +85,13 @@ Separatortemp<-c(' ',
                  'USING THE MORE ACCURATE ESTIMATE OF THE Veff [VeffLi] PROPOSED BY LI AND JI (2005):')
 Separator<-matrix(Separatortemp)
 Messagetemp<-c(' ',
-               'NB: I recommend using the Li and Ji (2005) estimate unless Veff < VeffLi. ')
+               'NB: Prof. Nyholt recommend using the Li and Ji (2005) estimate unless Veff < VeffLi.', 
+               ' ',
+               'If you plan to report the number of independent tests, please cite:', 
+               'Nyholt DR (2004) A simple correction for multiple testing for SNPs in linkage disequilibrium with each other. Am J Hum Genet 74(4):765-769.',
+               'and',
+               'Jie Zheng (2017) PhenoSpD: an atlas of phenotypic correlations and a multiple testing correction for the human phenome. BioRxiv:'
+               )
 Message<-matrix(Messagetemp)
 
 ##############################################################################################################################################

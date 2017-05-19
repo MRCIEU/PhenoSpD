@@ -7,31 +7,30 @@ usePackage <- function(p) {
     require(p, character.only = TRUE)
 }
 
-usePackage(optparse)
-usePackage(metaCCA)
+usePackage("optparse")
+usePackage("metaCCA")
 
 option_list = list(
   make_option(c("-s", "--sumstats"), type="character", default=NULL, 
               help="file with mulitple GWAS results", metavar="character"),
     
-  make_option(c("-s", "--phenocorr"), type="character", default=NULL, 
+  make_option(c("-p", "--phenocorr"), type="character", default=NULL, 
               help="phenotypic correlation matrix of multiple traits", metavar="character"),
     
   make_option(c("-o", "--out"), type="character", default="phenospd", 
-              help="output of the phenotypic correlation estimation", metavar="character"),
-
+              help="output of the phenotypic correlation estimation", metavar="character")
 
 ); 
 
 opt_parser = OptionParser(option_list=option_list);
 opt = parse_args(opt_parser);
 
-if (is.null(opt$sumstats)==FALSE & is.null(opt$sumstats)==FALSE){
+if (is.null(opt$sumstats)==FALSE & is.null(opt$phenocorr)==FALSE){
   print_help(opt_parser)
   stop("Please provide either the GWAS results file or the phenotypic correlaiton matrix file (you are providing both now). \n", call.=FALSE)
 }
 
-if (is.null(opt$sumstats)==TRUE & is.null(opt$sumstats)==TRUE){
+if (is.null(opt$sumstats)==TRUE & is.null(opt$phenocorr)==TRUE){
   print_help(opt_parser)
   stop("No input file provided. \n", call.=FALSE)
 }
@@ -41,24 +40,26 @@ if (is.null(opt$sumstats)==TRUE & is.null(opt$sumstats)==TRUE){
 #Rscript ./script/phenospd.r --sumstats ./data/PhenoSpD_input_example.txt --out example
 #Rscript ./script/phenospd.r --phenocorr ./data/LD-Hub_phenotypic_correlation_221x221.txt --out example
 
-if (is.null(opt$sumstats)==FALSE & is.null(opt$sumstats)==TRUE){
-  data <- read.table(opt$sumstats,header=T,row.names=1)
+if (is.null(opt$sumstats)==FALSE & is.null(opt$phenocorr)==TRUE){
+  gwas_data <- read.table(opt$sumstats,header=T,row.names=1)
   ##estimate phenotypic correlation matrix using metaCCA 
-  S_YY = estimateSyy( S_XY = data)
+  S_YY = estimateSyy( S_XY = gwas_data)
   ##write the phenotypic correlation matrix into the output file
   out_phenocorr <-paste0(opt$out,"_corr.txt")
-  write.table(S_YY, file=out_phenocorr, quote=F, sep="\t", row.names = F)
+  write.table(S_YY, file=out_phenocorr, quote=F, sep="\t", row.names = F,col.names=F)
   ##estimate number of independent traits and write the results into the output file
-  source(./script/SpD.r)
+  source("./script/SpD.r")
   out_ntests <-paste0(opt$out,"_ntests.txt")
+  S_YY<-as.data.frame(S_YY)
   SpD(phenocorr=S_YY, out=out_ntests) 
 }
 
-if (is.null(opt$sumstats)==TRUE & is.null(opt$sumstats)==FALSE){
+if (is.null(opt$sumstats)==TRUE & is.null(opt$phenocorr)==FALSE){
   ##estimate number of independent traits and write the results into the output file
-  source(./script/SpD.r) 
+  source("./script/SpD.r")
+  phenocorr <- read.table(opt$phenocorr,header=F) 
   out_ntests <-paste0(opt$out,"_ntests.txt")
-  SpD(phenocorr=S_YY, out=out_ntests)      
+  SpD(phenocorr=phenocorr, out=out_ntests)      
   #system(paste0("Rscript ./script/phenospd.r --phenocorr ",out_phenocorr," --out ",opt$out,"_ntests.txt")) 
 }
 

@@ -142,6 +142,9 @@ data/LD-Hub_phenotypic_correlation_221x221.txt
 If you are planning to using ***LD score regression*** to estimate phenotypic correlation, you can install LD score regression from here https://github.com/bulik/ldsc. 
 
 ## Citation
+If you use PhenSpD, please cite:
+
+Jie Zheng (2017) PhenoSpD: an atlas of phenotypic correlations and a multiple testing correction for the human phenome. BioRxiv:
 
 If you use the metaCCA software, please cite:
 
