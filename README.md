@@ -60,13 +60,13 @@ browseVignettes("metaCCA")
 
 We provided two options to deal with different user requests. 
 
-option 1. If you only have the GWAS summary results of multiple traits on hand, we recommand using PhenoSpD option 1 to estimate phenotyic correlation and correct for multiple testing at the same time. 
+Option 1. If you only have the GWAS summary results of multiple traits on hand, we recommand using PhenoSpD option 1 to estimate phenotyic correlation and correct for multiple testing at the same time. 
 ```
 cd PhenoSpD
 script ./script/phenospd.r --sumstats ./data/PhenoSpD_input_example.txt --out example
 ```
 
-option 2. If you have an exsiting phenotypic correlation matrix, we recommand using PhenoSpD option 2 to only correct for multiple testing.
+Option 2. If you have an exsiting phenotypic correlation matrix, we recommand using PhenoSpD option 2 to only correct for multiple testing.
 
 ```
 cd PhenoSpD
