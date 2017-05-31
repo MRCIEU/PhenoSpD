@@ -116,7 +116,7 @@ cd PhenoSpD
 script ./script/phenospd.r --sumstats ./data/PhenoSpD_input_example.txt --out example
 ```
 
-## option 2. multiple testing correction using exsiting phenotypic correlation matrix
+### option 2. multiple testing correction using exsiting phenotypic correlation matrix
 
 To estimate the number of independent traits using an exsiting phenotypic correlation matrix, please run the following code in your PhenoSpD folder
 ```
