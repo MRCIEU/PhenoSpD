@@ -76,7 +76,7 @@ Rscript ./script/phenospd.r --phenocorr ./data/LD-Hub_phenotypic_correlation_221
 
 More details of these options are decribed below
 
-### option 1. Phenotypic correlation estimation and multiple testing correlciton using GWAS summary results
+### Option 1. Phenotypic correlation estimation and multiple testing correlciton using GWAS summary results
 
 We provided an example of the PhenSpD input file, `data/PhenoSpD_input_example.txt`, in the PhenoSpD package.
 
@@ -116,7 +116,7 @@ cd PhenoSpD
 script ./script/phenospd.r --sumstats ./data/PhenoSpD_input_example.txt --out example
 ```
 
-### option 2. multiple testing correction using exsiting phenotypic correlation matrix
+### Option 2. multiple testing correction using exsiting phenotypic correlation matrix
 
 To estimate the number of independent traits using an exsiting phenotypic correlation matrix, please run the following code in your PhenoSpD folder
 ```
