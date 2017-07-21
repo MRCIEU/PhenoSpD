@@ -1,3 +1,11 @@
+##############################################################################################################################
+# PhenoSpD                                                                                                                   #
+# Version 1.0.0                                                                                                              #
+# (c) 2017 Jie Zheng and Tom Gaunt                                                                                           #
+# University of Bristol, School of Social and Community Medicine                                                             #
+# GNU General Public License v3                                                                                              #
+##############################################################################################################################
+
 usePackage <- function(p) {
     if (!is.element(p, installed.packages()[,1]))
         install.packages(p, dep = TRUE)
