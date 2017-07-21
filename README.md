@@ -144,7 +144,7 @@ If you are planning to using ***LD score regression*** to estimate phenotypic co
 ## Citation
 If you use PhenSpD, please cite:
 
-Jie Zheng (2017) PhenoSpD: an atlas of phenotypic correlations and a multiple testing correction for the human phenome. BioRxiv:
+Jie Zheng (2017) PhenoSpD: an atlas of phenotypic correlations and a multiple testing correction for the human phenome. BioRxiv: http://www.biorxiv.org/content/early/2017/06/10/148627
 
 If you use the metaCCA software, please cite:
 
@@ -165,6 +165,10 @@ Nyholt DR. (2004) A simple correction for multiple testing for SNPs in linkage d
 Li J, Ji L. (2005) Adjusting multiple testing in multilocus analyses using the eigenvalues of a correlation matrix. Heredity 95:221-227 https://www.ncbi.nlm.nih.gov/pubmed/16077740 
 
 More explanation of the SpD function can be found in Prof Nyholt's homepage: https://neurogenetics.qimrberghofer.edu.au/
+
+## License
+
+This project is licensed under GNU GPL v3.
 
 ## Authors
 
