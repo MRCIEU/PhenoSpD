@@ -141,6 +141,14 @@ data/LD-Hub_phenotypic_correlation_221x221.txt
 
 If you are planning to using ***LD score regression*** to estimate phenotypic correlation, you can install LD score regression from here https://github.com/bulik/ldsc. 
 
+
+## Example results of PhenoSpD
+
+We provide an example of the multiple testing correction results usig LD Hub phenotypic correlation matrix. 
+```
+results_example/LD-Hub.example_ntests.txt
+```
+
 ## Citation
 If you use PhenSpD, please cite:
 
