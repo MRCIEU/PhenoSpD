@@ -130,7 +130,7 @@ You can lookup existing pair-wise phenotypic correlation from ***LD Hub*** (http
 The download link for the current phenotypic correlation matrix is:
 
 ```
-http://ldsc.broadinstitute.org/static/media/LD-Hub_genetic_correlation_196x196.xlsx
+http://ldsc.broadinstitute.org/static/media/LD-Hub_genetic_correlation_221x221_no_ENIGMA.xlsx
 ```
 After download the file, the phenotypic correlation is in sheet **rP**  
 
@@ -144,7 +144,7 @@ If you are planning to using ***LD score regression*** to estimate phenotypic co
 ## Citation
 If you use PhenSpD, please cite:
 
-Jie Zheng (2017) PhenoSpD: an atlas of phenotypic correlations and a multiple testing correction for the human phenome. BioRxiv: http://www.biorxiv.org/content/early/2017/06/10/148627
+Jie Zheng (2017) PhenoSpD: an integrated toolkit for phenotypic correlation estimation and multiple testing correction using GWAS summary statistics. BioRxiv: https://www.biorxiv.org/content/early/2017/07/25/148627
 
 If you use the metaCCA software, please cite:
 
